@@ -16,17 +16,17 @@ Aplicación para el personal de un parqueadero que necesita conocer la ocupació
 # Diagrama de clases 
 ```mermaid 
 classDiagram
-    Parking *-- Spot : contains
-    Parking --> Employee : manages
-    Parking --> Rate : manages
-    Parking --> Vehicle : registers
-    Parking --> Ticket : issues
+    Parking "1" -- "0.." Spot 
+    Parking "1" --> "0..*" Employee 
+    Parking "1" --> "0..*" Rate 
+    Parking "1" --> "0..*" Vehicle 
+    Parking "1" --> "0..*" Ticket 
     
-    Ticket *-- Payment : generates
-    Ticket --> Vehicle : links to
-    Ticket --> Spot : assigns
-    Ticket --> Rate : applies
-    Ticket --> Employee : processed by
+    Ticket "1" *-- "0..1" Payment 
+    Ticket "0..*" --> "1" Vehicle 
+    Ticket "0..*" --> "1" Spot 
+    Ticket "0..*" --> "1" Rate 
+    Ticket "0..*" --> "1" Employee 
 
     Vehicle <|-- Car
     Vehicle <|-- Motorcycle
