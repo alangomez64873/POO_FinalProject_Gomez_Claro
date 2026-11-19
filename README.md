@@ -15,6 +15,82 @@ Aplicación para el personal de un parqueadero que necesita conocer la ocupació
 # Ejemplo de entrada y salida
 # Diagrama de clases 
 ```mermaid 
+classDiagram
+    Parking *-- Spot : contains
+    Parking --> Employee : manages
+    Parking --> Rate : manages
+    Parking --> Vehicle : registers
+    Parking --> Ticket : issues
+    
+    Ticket *-- Payment : generates
+    Ticket --> Vehicle : links to
+    Ticket --> Spot : assigns
+    Ticket --> Rate : applies
+    Ticket --> Employee : processed by
 
+    Vehicle <|-- Car
+    Vehicle <|-- Motorcycle
+
+    class Parking {
+        -name: String
+        -address: String
+        +registerEntry(vehicle: Vehicle, spot: Spot, rate: Rate, employee: Employee): Ticket
+        +registerExit(ticket: Ticket): Payment
+        +calculateOccupancyPercentage(): double
+        +recommendSpot(): Spot
+    }
+
+    class Employee {
+        -employeeId: String
+        -name: String
+        -administrator: boolean
+    }
+
+    class Spot {
+        -code: int
+        -floor: int
+        -occupied: boolean
+        +isAvailable(): boolean
+        +occupy(): void
+        +free(): void
+    }
+
+    class Rate {
+        -name: String
+        -ratePerHour: double
+    }
+
+    class Vehicle {
+        -plate: String
+        -make: String
+        -color: String
+        +calculateRateFactor(): double
+        +hasActiveTicket(): boolean
+    }
+
+    class Car {
+        -numberOfDoors: int
+    }
+
+    class Motorcycle {
+        -engineDisplacement: int
+    }
+
+    class Ticket {
+        -number: String
+        -entryTime: LocalDateTime
+        -exitTime: LocalDateTime
+        -active: boolean
+        +isOpen(): boolean
+        +calculateValue(exitTime: LocalDateTime): double
+        +close(exitTime: LocalDateTime): Payment
+        +cancel(): void
+    }
+
+    class Payment {
+        -receiptNumber: String
+        -value: double
+        -dateTime: LocalDateTime
+    }
 
  ```
