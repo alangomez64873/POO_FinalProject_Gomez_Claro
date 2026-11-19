@@ -18,6 +18,7 @@ Aplicación para el personal de un parqueadero que necesita conocer la ocupació
 4. El programa se iniciará y podrá interactuar con el menú principal directamente desde la consola del editor.
 # Ejemplo de entrada y salida
 
+```text
 ==========================================
    Bienvenido a Smart Parking Centro
 ==========================================
@@ -116,6 +117,7 @@ Exception in thread "main" java.util.InputMismatchException
         at java.base/java.util.Scanner.nextInt(Unknown Source)
         at ui.Main.main(Main.java:35)
 PS C:\Users\Alan Gomez\Desktop\POO FINAL_PROJECT>
+```
 # Diagrama de clases 
 ```mermaid 
 classDiagram
